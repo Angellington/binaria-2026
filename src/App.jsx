@@ -17,6 +17,7 @@ function App() {
         <Route path={"/prof"} element={<Prof />}></Route>
         <Route path={"/shop"} element={<Shop />}></Route>
         <Route path={"/contact"} element={<Contact />}></Route>
+        <Route path={"/top"} element={<Contact />}></Route>
       </Routes>
     </AppLayout>
   );

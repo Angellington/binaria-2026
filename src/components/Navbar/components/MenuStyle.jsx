@@ -8,11 +8,11 @@ const NavbarDefault = styled('div', {
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'center',
+  position: 'fixed',
+  width: '100%',
   justifyContent: 'space-between',
-  backgroundColor: '#000',
+  backgroundColor: '#000000c7',
   color: 'white',
-  paddingLeft: '10px',
-  paddingRight: '10px',
+  paddingRight: '40px'
 }))
-
 export default NavbarDefault

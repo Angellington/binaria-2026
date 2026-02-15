@@ -5,6 +5,7 @@
     gap: 3rem; 
     padding: 0;
     margin: 0;
+    padding-right: 3rem;
 }
 
 .navbar nav ul li a {
@@ -56,3 +57,66 @@
     opacity: 0.8;
 }
 
+.menuMobile {
+  /* Estilo base do drawer */
+}
+.menu_button {
+    text-decoration: none;
+    color: #ffffff;
+    font-family: 'Cormorant Garamond', Courier, monospace;
+    font-size: 1.2rem;
+    font-weight: 400;
+    padding: 0.5rem 0;
+    display: inline-block;    
+    transition: all 0.3s ease; 
+    position: relative;
+}
+
+.menu_button svg, p {
+    color: #fff;
+}
+
+.menu_text {
+    color: #fff;
+    margin-left: 6px;
+}
+
+.menuMobile div {
+  width: 100%;
+}
+
+.menuMobile nav {
+  padding: 20px 0;
+}
+
+.menuMobile ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menuMobile li {
+  position: relative;
+  border-left: 3px solid transparent; /* Linha no início (transparente por padrão) */
+  transition: all 0.3s ease;
+}
+
+.menuMobile li:hover {
+  border-left-color: #000; /* Cor da linha no hover - substitua #your-color pela cor desejada */
+  background-color: rgba(0, 0, 0, 0.05); /* Efeito de fundo suave no hover */
+}
+
+.menuMobile a {
+  display: block;
+  padding: 12px 20px;
+  text-decoration: none;
+  color: #333; /* Cor do texto - ajuste conforme necessário */
+  font-size: 16px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.menuMobile li:hover a {
+  color: #000; /* Cor do texto no hover - use a mesma cor da linha ou uma complementar */
+  padding-left: 25px; /* Pequeno deslocamento para dar efeito de movimento */
+}
