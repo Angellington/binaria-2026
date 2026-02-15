@@ -7,8 +7,12 @@ const NavbarDefault = styled('div', {
 })(({ theme }) => ({
   display: 'flex',
   flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'space-between',
   backgroundColor: '#000',
   color: 'white',
+  paddingLeft: '10px',
+  paddingRight: '10px',
 }))
 
 export default NavbarDefault

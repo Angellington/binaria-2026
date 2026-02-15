@@ -1,5 +1,5 @@
-import Navbar from "./Navbar/Navbar";
 import { Box } from '@mui/material'; // ou o Box que você está usando
+import Navbar from './Navbar/Navbar';
 
 const AppLayout = ({ children }) => {
   return (
