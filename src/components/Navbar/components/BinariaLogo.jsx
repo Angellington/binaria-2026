@@ -1,20 +1,18 @@
-import { Box } from '@mui/material';
-import React, { useEffect, useState } from 'react'
+import { useState } from "react";
+import { Box } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import styles from "./binaria-logo.module.css";
 
 const BinariaLogo = () => {
-    const [isHover, setIsHover] = useState(false);
-    const [logo, setLogo] = useState('/assets/binaria-logo-1.png')
-
-    useEffect(() => {
-        setIsHover(true)
-
-    }, [logo])
+  const navigate = useNavigate();
 
   return (
-    <Box width={'100px'} height={'10px'} m={5} sx={{ background: '#bd8888'}}> 
-
+    <Box className={styles.logo} onClick={() => navigate('/')}>
+      <img className={styles.logoBase} src="/assets/binaria-logo-1.png" alt="logo" />
+      <img className={styles.logoHover} src="/assets/binaria-logo-2.png" alt="logo hover" />
     </Box>
-  )
-}
+  );
+};
+
 
 export default BinariaLogo

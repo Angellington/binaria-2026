@@ -15,7 +15,7 @@ const Navbar = () => {
   const menuOptions = [
     {
       name: "Home",
-      path: "/home",
+      path: "/",
     },
     {
       name: "Music",
@@ -55,13 +55,13 @@ const Navbar = () => {
         >
           <BinariaLogo />
 
-     <IconButton
-  onClick={() => setMenuOpen(true)}
-  className={styles.menu_button}
->
-  <MenuSharp />
-  <span className={styles.menu_text}>Menu</span>
-</IconButton>
+          <IconButton
+            onClick={() => setMenuOpen(true)}
+            className={styles.menu_button}
+          >
+            <MenuSharp />
+            <span className={styles.menu_text}>Menu</span>
+          </IconButton>
         </Stack>
         <Drawer
           anchor="top"
@@ -74,7 +74,9 @@ const Navbar = () => {
               <ul>
                 {menuOptions.map((opt) => (
                   <li key={opt.name}>
-                    <Link onClick={() => setMenuOpen(false)} to={opt.path}>{opt.name}</Link>
+                    <Link onClick={() => setMenuOpen(false)} to={opt.path}>
+                      {opt.name}
+                    </Link>
                   </li>
                 ))}
               </ul>
