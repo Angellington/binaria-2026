@@ -36,6 +36,7 @@ let theme = createTheme({
     background: {
       default: '#FFFFFF',
       paper: '#F8F8F8',
+      custom: '#1e1e1ee6',
     },
     action: {
       active: '#71CACE',

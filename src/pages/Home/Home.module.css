@@ -1,0 +1,61 @@
+.home {
+    min-height: 100vh;
+    width: 100%;
+    background-image: url('../../assets/background/new-binaria-background.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.initial {
+    padding-top: 10vh;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.last_releases {
+    gap: 0.9rem;
+}
+.release_item {
+    cursor: pointer;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.release_img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.release_name {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 7px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color:  #ffffff;
+    opacity: 0;
+    transition: 0.3s ease;
+}
+
+.release_item:hover .release_name {
+  opacity: 1;
+}
+
+.timeline {
+    width: 100vw;
+    height: 100vh;
+
+    background-color: rgba(186, 173, 157, 0.691);
+}
