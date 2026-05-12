@@ -54,9 +54,11 @@
   opacity: 1;
 }
 
-.timeline {
+/* .timeline {
     width: 100vw;
     height: 100vh;
+    margin: 0;
+    padding: 0;
 
     background-color: rgba(186, 173, 157, 0.691);
-}
+} */

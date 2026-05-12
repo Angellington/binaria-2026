@@ -45,8 +45,8 @@ const Home = () => {
           <Passage text={'"Sono no Miaege, tadano memori"'} />
         </Box>
       </Box>
-      <Box className={styles.timeline}>
-      <Timeline />
+      <Box >
+        <Timeline />
       </Box>
     </Box>
   );

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useCallback, useState } from "react";
 
-export const useGetApi = () => {
+export const useGetApi = (jsonFile) => {
   const [loadingFetch, setLoadingFetch] = useState(false);
   const [errorFetch, setErrorFetch] = useState(null);
 
