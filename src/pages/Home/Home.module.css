@@ -4,6 +4,7 @@
     background-image: url('../../assets/background/new-binaria-background.png');
     background-repeat: no-repeat;
     background-attachment: fixed;
+    background-size: cover;
 
     display: flex;
     flex-direction: column;
@@ -12,7 +13,7 @@
 }
 
 .initial {
-    padding-top: 10vh;
+    padding-top: 5vh;
     height: 80vh;
     display: flex;
     flex-direction: column;

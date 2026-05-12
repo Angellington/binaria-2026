@@ -12,16 +12,19 @@ import Timeline from "./Components/Timeline";
 const Home = () => {
   const lastReleases = [
     {
-      name: "Ortography",
+      name: "2020m3",
       img: ortography,
+      src: '/'
     },
     {
-      name: "Ortography2",
+      name: "Tsuzuri",
       img: ortography2,
+      src: '/'
     },
     {
-      name: "Diez",
+      name: "Binaria 10th",
       img: Diez,
+      src: '/'
     },
   ];
 
