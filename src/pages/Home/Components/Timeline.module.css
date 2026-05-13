@@ -7,89 +7,153 @@
   min-block-size: 100vh;
   width: 100%;
   padding: 2rem;
-  
+
   /* Usando column layout */
   column-count: 3;
   column-gap: 2rem;
   column-fill: balance;
-  
-  /* Bordas laterais pretas - usando border mesmo */
+
+  /* Bordas laterais pretas */
   border-left: 5vw solid rgba(0, 0, 0, 0.8);
   border-right: 5vw solid rgba(0, 0, 0, 0.8);
-  
-  /* ESSENCIAL: faz com que as bordas contem na largura total */
+
   box-sizing: border-box;
-  
+
   /* Para o efeito de fundo */
   position: relative;
   overflow: hidden;
   z-index: 1;
 }
 
-/* Linhas de fundo */
+/* LINHAS TRANSVERSAIS GROSSAS - ÂNGULO 75° */
 .timeline::before,
 .timeline::after {
   content: "";
   position: absolute;
-  background: rgba(0, 0, 0, 0.15);
-  pointer-events: none; /* Para não atrapalhar cliques */
-  z-index: -1;
+  pointer-events: none;
+  z-index: 0;
 }
 
-/* Primeira linha - rotacionada 45 graus */
+/* Primeira linha transversal grossa - 75 graus */
 .timeline::before {
   top: -50%;
-  left: -20%;
-  width: 150%;
-  height: 8px; /* Espessura da linha */
-  background: linear-gradient(90deg, 
+  left: -50%;
+  width: 200%;
+  height: 15vh; /* Linha grossa */
+  background: linear-gradient(
+    90deg,
     transparent 0%,
-    rgba(0, 0, 0, 0.3) 20%,
-    rgba(0, 0, 0, 0.5) 50%,
-    rgba(0, 0, 0, 0.3) 80%,
+    rgba(255, 255, 255, 0.15) 15%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0.15) 85%,
     transparent 100%
   );
-  transform: rotate(45deg);
-  animation: linhaMove1 15s linear infinite;
+  transform: rotate(75deg);
+  animation: linhaTransversal1 12s ease-in-out infinite;
+  filter: blur(3px);
+  z-index: 0;
+  backdrop-filter: blur(2px);
 }
 
-/* Segunda linha - rotacionada -30 graus */
+/* Segunda linha transversal grossa - 75 graus (deslocada) */
 .timeline::after {
-  bottom: -30%;
-  right: -10%;
-  width: 120%;
-  height: 12px; /* Linha mais grossa */
-  background: linear-gradient(90deg,
+  bottom: -50%;
+  right: -50%;
+  width: 200%;
+  height: 20vh; /* Linha ainda mais grossa */
+  background: linear-gradient(
+    90deg,
     transparent 0%,
-    rgba(0, 0, 0, 0.2) 15%,
-    rgba(0, 0, 0, 0.6) 50%,
-    rgba(0, 0, 0, 0.2) 85%,
+    rgba(255, 255, 255, 0.11) 10%,
+    rgba(255, 255, 255, 0.144) 50%,
+    rgba(100, 201, 255, 0.027) 90%,
     transparent 100%
   );
-  transform: rotate(-30deg);
-  animation: linhaMove2 20s linear infinite;
+  transform: rotate(75deg);
+  animation: linhaTransversal2 15s ease-in-out infinite;
+  filter: blur(4px);
+  z-index: 0;
+  backdrop-filter: blur(1px);
 }
 
-/* Animações das linhas */
-@keyframes linhaMove1 {
+/* Animações das linhas transversais */
+@keyframes linhaTransversal1 {
   0% {
-    transform: rotate(45deg) translateX(-100%) translateY(-100%);
+    transform: rotate(75deg) translateX(-100%) translateY(-100%);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 0.6;
   }
   100% {
-    transform: rotate(45deg) translateX(100%) translateY(100%);
+    transform: rotate(75deg) translateX(100%) translateY(100%);
+    opacity: 0;
   }
 }
 
-@keyframes linhaMove2 {
+@keyframes linhaTransversal2 {
   0% {
-    transform: rotate(-30deg) translateX(100%) translateY(-100%);
+    transform: rotate(75deg) translateX(100%) translateY(100%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.5;
+  }
+  60% {
+    opacity: 0.8;
   }
   100% {
-    transform: rotate(-30deg) translateX(-100%) translateY(100%);
+    transform: rotate(75deg) translateX(-100%) translateY(-100%);
+    opacity: 0;
   }
 }
 
-/* Garantir que as bordas apareçam no body também */
+/* Terceira linha transversal (opcional - criando mais dramaticidade) */
+.timeline .linhaTransversal3 {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 150%;
+  height: 25vh;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.05) 20%,
+    rgba(255, 200, 100, 0.25) 50%,
+    rgba(255, 255, 255, 0.05) 80%,
+    transparent 100%
+  );
+  transform: rotate(75deg);
+  animation: linhaTransversal3 18s ease-in-out infinite;
+  filter: blur(5px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes linhaTransversal3 {
+  0% {
+    transform: rotate(75deg) translateX(-50%) translateY(-150%);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.4;
+  }
+  75% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: rotate(75deg) translateX(50%) translateY(150%);
+    opacity: 0;
+  }
+}
+
+/* Garantir que as bordas apareçam no body */
 body {
   margin: 0;
   padding: 0;
@@ -97,7 +161,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Evita que os itens quebrem entre colunas */
+/* MainContainer com efeito GLASS (vidro) */
 .mainContainer {
   break-inside: avoid;
   page-break-inside: avoid;
@@ -105,28 +169,109 @@ body {
   margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
-  border-left: 4px solid white;
-  padding-left: 1rem;
-  
+  border-left: 4px solid rgba(255, 255, 255, 0.3);
+  padding: 1.5rem;
+
+  /* Efeito Glassmorphism */
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+
   /* Animações */
   opacity: 0;
   transform: translateY(30px);
   animation: fadeInUp 0.6s ease forwards;
+
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
 }
 
-/* Delay diferente para cada mainContainer baseado na posição */
-.mainContainer:nth-child(1) { animation-delay: 0.1s; }
-.mainContainer:nth-child(2) { animation-delay: 0.2s; }
-.mainContainer:nth-child(3) { animation-delay: 0.3s; }
-.mainContainer:nth-child(4) { animation-delay: 0.4s; }
-.mainContainer:nth-child(5) { animation-delay: 0.5s; }
-.mainContainer:nth-child(6) { animation-delay: 0.6s; }
-.mainContainer:nth-child(7) { animation-delay: 0.7s; }
-.mainContainer:nth-child(8) { animation-delay: 0.8s; }
-.mainContainer:nth-child(9) { animation-delay: 0.9s; }
-.mainContainer:nth-child(10) { animation-delay: 1s; }
+/* Efeito de brilho no hover do MainContainer
+.mainContainer:hover {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  transform: translateX(5px) translateY(-2px);
+  border-left: 4px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+} */
 
-/* Keyframes da animação */
+/* Pequena linha que atravessa o MainContainer no hover */
+.mainContainer::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.9),
+    transparent
+  );
+  transform: translateY(-50%) rotate(75deg);
+  animation: linhaAtravessa 3s ease-in-out infinite;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mainContainer:hover::before {
+  opacity: 1;
+}
+
+/* @keyframes linhaAtravessa {
+  0% {
+    left: -100%;
+    transform: translateY(-50%) rotate(75deg);
+  }
+  100% {
+    left: 100%;
+    transform: translateY(-50%) rotate(75deg);
+  }
+} */
+
+/* Delay para cada mainContainer */
+.mainContainer:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.mainContainer:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.mainContainer:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.mainContainer:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.mainContainer:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.mainContainer:nth-child(6) {
+  animation-delay: 0.6s;
+}
+.mainContainer:nth-child(7) {
+  animation-delay: 0.7s;
+}
+.mainContainer:nth-child(8) {
+  animation-delay: 0.8s;
+}
+.mainContainer:nth-child(9) {
+  animation-delay: 0.9s;
+}
+.mainContainer:nth-child(10) {
+  animation-delay: 1s;
+}
+.mainContainer:nth-child(11) {
+  animation-delay: 1.1s;
+}
+.mainContainer:nth-child(12) {
+  animation-delay: 1.2s;
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -138,19 +283,17 @@ body {
   }
 }
 
-/* Animação para o hover também */
-.mainContainer:hover {
-  transform: translateX(5px);
-  transition: transform 0.3s ease;
-}
-
 .date_box {
-  background-color: #f9f9f9;
+  background: rgba(249, 249, 249, 0.95);
   padding: 0.8rem;
   border-radius: 0.7rem;
   text-align: start;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.2),
+    0 2px 4px rgba(0, 0, 0, 0.1);
+  transition:
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
   width: 100%;
   max-width: 100%;
   position: relative;
@@ -158,13 +301,25 @@ body {
 }
 
 .date_box:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow:
+    0 8px 16px rgba(0, 0, 0, 0.3),
+    0 4px 8px rgba(0, 0, 0, 0.2);
   transform: translateY(-5px);
 }
 
 .date_box > .date {
-  font-family: "Roboto", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family:
+    "Roboto",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
   font-size: 13px;
   color: var(--secondary-color);
   margin-bottom: 0.5rem;
@@ -173,8 +328,18 @@ body {
 .date_box > .text {
   text-align: justify;
   font-weight: bold;
-  font-family: "Roboto", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family:
+    "Roboto",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
   color: var(--text-color);
   font-size: 12px;
   line-height: 1.5;
@@ -196,6 +361,7 @@ body {
   animation: slideInLeft 0.5s ease forwards;
   animation-delay: 0.2s;
   z-index: 2;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .yearTitle::after {
@@ -205,7 +371,7 @@ body {
   left: 0;
   width: 50px;
   height: 2px;
-  background-color: white;
+  background: linear-gradient(90deg, white, transparent);
   transform: scaleX(0);
   transform-origin: left;
   animation: expandLine 0.5s ease forwards;
@@ -246,17 +412,36 @@ body {
   z-index: 2;
 }
 
-/* Delay progressivo para cada flexRow */
-.flexRow:nth-child(1) { animation-delay: 0.1s; }
-.flexRow:nth-child(2) { animation-delay: 0.2s; }
-.flexRow:nth-child(3) { animation-delay: 0.3s; }
-.flexRow:nth-child(4) { animation-delay: 0.4s; }
-.flexRow:nth-child(5) { animation-delay: 0.5s; }
-.flexRow:nth-child(6) { animation-delay: 0.6s; }
-.flexRow:nth-child(7) { animation-delay: 0.7s; }
-.flexRow:nth-child(8) { animation-delay: 0.8s; }
-.flexRow:nth-child(9) { animation-delay: 0.9s; }
-.flexRow:nth-child(10) { animation-delay: 1s; }
+.flexRow:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.flexRow:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.flexRow:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.flexRow:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.flexRow:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.flexRow:nth-child(6) {
+  animation-delay: 0.6s;
+}
+.flexRow:nth-child(7) {
+  animation-delay: 0.7s;
+}
+.flexRow:nth-child(8) {
+  animation-delay: 0.8s;
+}
+.flexRow:nth-child(9) {
+  animation-delay: 0.9s;
+}
+.flexRow:nth-child(10) {
+  animation-delay: 1s;
+}
 
 @keyframes fadeIn {
   from {
@@ -305,13 +490,15 @@ body {
     border-left: 3vw solid black;
     border-right: 3vw solid black;
   }
-  
-  .timeline::before {
-    height: 6px;
+
+  .mainContainer {
+    padding: 1rem;
+    backdrop-filter: blur(8px);
   }
-  
+
+  .timeline::before,
   .timeline::after {
-    height: 8px;
+    height: 10vh;
   }
 }
 
@@ -322,27 +509,33 @@ body {
     border-right: 2vw solid rgba(0, 0, 0, 0.8);
     padding: 1rem;
   }
-  
+
   .starline {
     width: 60px;
     gap: 0.5rem;
   }
-  
+
   .date_box {
     padding: 0.5rem;
   }
-  
+
   .yearTitle {
     font-size: 1rem;
   }
-  
+
+  .mainContainer {
+    padding: 0.8rem;
+    backdrop-filter: blur(5px);
+  }
+
   .timeline::before,
-  .timeline::after {
-    display: none; /* Remove as linhas em mobile se atrapalhar */
+  .timeline::after,
+  .timeline .linhaTransversal3 {
+    display: none;
   }
 }
 
-/* Scroll reveal - aparece quando scrolla (opcional, mais avançado) */
+/* Scroll reveal */
 @keyframes scrollReveal {
   from {
     opacity: 0;
@@ -354,7 +547,6 @@ body {
   }
 }
 
-/* Classe para elementos que ainda não foram vistos */
 .mainContainer:not(.revealed) {
   opacity: 0;
   transform: translateY(50px);

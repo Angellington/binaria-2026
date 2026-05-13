@@ -23,8 +23,6 @@ const Timeline = () => {
   //   return <CircularProgress />;
   // }
 
-  console.log("loadingFetch", loadingFetch);
-
   return (
     <Box
       className={styles.timeline}
@@ -38,7 +36,6 @@ const Timeline = () => {
         component="section"
         aria-label="Timeline content"
       >
-
         {timeline.length > 0 &&
           timeline.map((tm) => (
             <Box className={styles.mainContainer}>
@@ -50,21 +47,18 @@ const Timeline = () => {
                 tm.discography.map((ds) => (
                   <Box className={styles.flexRow}>
                     <Box className={styles.starline}>
-                  <Star
-  className={styles.starIcon}
-  sx={{ color: theme.palette.primary.light }}
-  aria-label="Star icon"
-/>
+                      <Star
+                        className={styles.starIcon}
+                        sx={{ color: theme.palette.primary.light }}
+                        aria-label="Star icon"
+                      />
                       <Box className={styles.lineComponent}>
                         <Line />
                       </Box>
                     </Box>
 
                     <article className={styles.date_box}>
-                      <Typography
-                        className={styles.date}
-                        component="time"
-                      >
+                      <Typography className={styles.date} component="time">
                         {ds.day}
                       </Typography>
 
@@ -76,7 +70,6 @@ const Timeline = () => {
                 ))}
             </Box>
           ))}
-
       </Box>
     </Box>
   );

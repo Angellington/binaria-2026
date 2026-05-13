@@ -8,6 +8,7 @@ import Diez from "../../assets/albums/Diez.jpg";
 import MenuTextIcon from "../../components/MenuTextIcon";
 import Passage from "../../components/Passage";
 import Timeline from "./Components/Timeline";
+import Binaria from "./Components/Binaria";
 
 const Home = () => {
   const lastReleases = [
@@ -47,6 +48,9 @@ const Home = () => {
       </Box>
       <Box >
         <Timeline />
+      </Box>
+      <Box>
+        <Binaria />
       </Box>
     </Box>
   );
