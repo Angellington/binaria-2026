@@ -1,13 +1,31 @@
-import React from 'react'
-import style from './Binaria.module.css'
-import { Box } from '@mui/material'
-const Binaria = () => {
+import style from "./Binaria.module.css";
+import { Box } from "@mui/material";
+import Chart from "../../../assets/BinariaChart.png";
 
+const Binaria = () => {
   return (
     <Box className={style.binaria}>
-        
-    </Box>
-)
-}
+      <Box className={style.screen}>
+        <Box className={style.line_axis_x} />
+        <Box className={style.line_axis_y} />
+        <Box className={style.abiscissas} />
+        <Box className={style.ordinates} />
+        <Box className={style.ordinatesH} />
 
-export default Binaria
+        {/* DOTLINES  */}
+        <Box className={style.dashed45} />
+
+        {/* ORBITAL */}
+        <Box className={style.orbital}></Box>
+
+        {/* Texts  */}
+        <Box className={style.heightGraphicLetter}>h</Box>
+
+
+        <img src={Chart} className={style.chart} />
+      </Box>
+    </Box>
+  );
+};
+
+export default Binaria;
