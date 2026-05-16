@@ -21,7 +21,7 @@
   overflow: hidden;
 }
 .chart {
-  opacity: 0.1;
+  opacity: 0.2;
   width: 60rem;
   height: auto;
 }
@@ -29,9 +29,9 @@
 /* LINHAS */
 .line_axis_x {
   position: absolute;
-  top: 46%;
-  left: 54px;
-  width: 71%;
+  top: 46.5%;
+  left: 102px;
+  width: 61%;
   /* opacity: 0.2; */
   height: 1.25px;
   background-color: #8a776e;
@@ -40,52 +40,72 @@
 
 .line_axis_y {
   position: absolute;
-  top: 12px;
-  left: 44%;
+  top: 23px;
+  left: 43%;
   width: 1.25px;
-  height: 90.8%;
+  height: 94.8%;
   background-color: #8a776e;
-  transform: translateX(-330%);
+  transform: translateX(-594%);
 }
 
 .abiscissas {
   position: absolute;
-  top: 83%;
-  left: 54px;
-  width: 71%;
+  top: 84%;
+  left: 104px;
+  width: 61%;
   /* opacity: 0.2; */
   height: 1.5px;
   background-color: #8a776e;
-  transform: translateY(-174%);
+  transform: translateY(-296%);
 }
 
 .ordinates {
   position: absolute;
-  top: 203px;
-  left: 11%;
-  width: 2.5px;
+  top: 209px;
+  left: 15%;
+  width: 1.25px;
   height: 50.8%;
   background-color: #8a776e;
-  transform: translateX(-135%);
+  transform: translateX(-217%);
 }
 
 .ordinatesH {
   position: absolute;
-  top: 203px;
-  left: 9%;
-  width: 1.9px;
-  height: 50.8%;
+  top: 251px;
+  left: 13%;
+  width: 1.25px;
+  height: 44.2%;
   background-color: #8a776e;
-  transform: translateX(-135%);
+  transform: translateX(-274%);
 }
 
+/*Letters */
 .heightGraphicLetter {
-    position: absolute;
-    font-style: italic;
-    font-weight: 500;
-    color: #8a776e;
-    left: 9.4%;
-    bottom: 35.5%;
+  position: absolute;
+  font-style: italic;
+  font-weight: 500;
+  color: #8a776e;
+  left: 9.4%;
+  bottom: 35.5%;
+}
+
+.inclinationAngleLetter {
+  position: absolute;
+  font-weight: 500;
+  color: #8a776e;
+  top: 17%;
+  left: 44%;
+
+  font-size: 12px;
+}
+
+.inclinationAngleJapanese {
+  position: absolute;
+  font-weight: 500;
+  color: #8a776e;
+  top: 19%;
+  left: 46%;
+  font-size: 12px;
 }
 
 /*DASHED*/
@@ -93,25 +113,81 @@
 .dashed45 {
   position: absolute;
   top: 46%;
-  left: 10.6px;
+  left: 33.6px;
 
-  width: 83%;
+  width: 78%;
   height: 1.25px;
 
   border-top: 1px dashed #8a776e;
 
-  transform: translateY(-74%) rotate(-43deg);
+  transform: translateY(-74%) rotate(-45.2deg);
 }
+
+/* Angles */
+.inclinationAngle {
+  position: absolute;
+  top: 34%;
+  left: 37%;
+  width: 182px;
+  height: 107px;
+  border: 1px dashed #8a776e;
+  border-radius: 50%;
+  transform: translateY(-71%) rotate(22.8deg);
+  clip-path: inset(-56% 4% 86% 18%);
+}
+
+/* Orbital */
 
 .orbital {
   position: absolute;
 
-  top: 31.5%;
-  right: 30%;
-  width: 529px;
-  height: 184px;
+  top: 32.5%;
+  right: 33%;
+  width: 474px;
+  height: 175px;
 
   border: 1px solid #8a776e;
   border-radius: 50%;
-  transform: translateX(0.7%);
+  transform: translateX(-0.3%);
+}
+
+.internalOrbital {
+  position: absolute;
+
+  top: 38.8%;
+  right: 44%;
+  width: 263px;
+  height: 96px;
+
+  border: 1px solid #8a776e;
+  border-radius: 50%;
+  transform: translateX(-0.3%);
+}
+
+.nagaoOrbital {
+  position: absolute;
+  top: 61.2%;
+  right: -25.6%;
+  width: 626px;
+  height: 220px;
+  border: 1px solid #8a776e;
+  border-radius: 50%;
+  transform: translateX(-0.3%) rotate(11deg);
+
+  -webkit-mask-image: linear-gradient(to left, transparent 60%, black 70%);
+  mask-image: linear-gradient(to left, transparent 60%, black 70%);
+}
+
+.xaiOrbital {
+  position: absolute;
+  top: 10.3%;
+  right: 54.6%;
+  width: 414px;
+  height: 88px;
+  border: 1px solid #8a776e;
+  border-radius: 50%;
+  transform: translateX(0.7%) rotate(21deg) translateY(-2.6%);
+
+  -webkit-mask-image: linear-gradient(to right, transparent 20%, black 70%);
+  mask-image: linear-gradient(to right, transparent 5%, black 90%);
 }

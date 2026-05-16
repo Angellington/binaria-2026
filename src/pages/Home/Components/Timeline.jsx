@@ -8,7 +8,7 @@ import parse from "html-react-parser";
 
 const Timeline = () => {
   const timelineJson = "mocks/data/discography.json";
-  const { getJsonFile, loadingFetch, errorFetch } = useGetApi();
+  const { getJsonFile } = useGetApi();
   const [timeline, setTimeline] = useState("");
 
   const theme = useTheme();

@@ -1,6 +1,5 @@
-import React from 'react'
-import Info from '../assets/icons/Info.png'
-import { Stack, Typography, useTheme } from '@mui/material'
+import Info from "../assets/icons/Info.png";
+import { Stack, Typography, useTheme } from "@mui/material";
 
 const MenuTextIcon = ({ text }) => {
   const theme = useTheme();
@@ -11,36 +10,41 @@ const MenuTextIcon = ({ text }) => {
       alignItems="center"
       sx={{
         backgroundColor: theme.palette.background.custom,
-        m: 0,
-        p: 0,
-        width: '13rem',
-        height: '2rem',
+        position: "relative", 
+        width: "13rem",
+        height: "2rem",
       }}
     >
+  
       <img
         src={Info}
         alt="icon"
         style={{
+          position: "absolute",
+          left: 5,
           width: 50,
           height: 50,
-          objectFit: 'contain'
+          objectFit: "contain",
+          zIndex: 1,
         }}
       />
 
       <Typography
         sx={{
+          position: "absolute",
+          left: "55%", 
+          transform: "translateX(-50%)", 
           color: theme.palette.text.secondary,
-          fontFamily: 'Cormorant Garamond, Courier, monospace'  ,
+          fontFamily: "Cormorant Garamond, Courier, monospace",
           fontSize: 20,
-          fontStyle: 'italic',
-          lineHeight: 1,
-          whiteSpace: 'nowrap'
+          fontStyle: "italic",
+          whiteSpace: "nowrap",
         }}
       >
         {text}
       </Typography>
     </Stack>
-  )
-}
+  );
+};
 
-export default MenuTextIcon
+export default MenuTextIcon;

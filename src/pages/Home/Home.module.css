@@ -27,16 +27,24 @@
 }
 .release_item {
     cursor: pointer;
-  position: relative;
-  display: inline-block;
-  overflow: hidden;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
 }
 
 .release_img {
-  width: 100%;
-  height: auto;
-  display: block;
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: all 0.3s ease;  
 }
+
+
+.release_item:hover .release_img {
+    filter: brightness(0.85) blur(0.55px);  
+    transition: all 0.6s ease;
+}
+
 
 .release_name {
     position: absolute;
@@ -45,13 +53,14 @@
     width: 100%;
     padding: 7px;
     background-color: rgba(0, 0, 0, 0.6);
-    color:  #ffffff;
+    color: #ffffff;
     opacity: 0;
-    transition: 0.3s ease;
+    transition: 0.3s ease-in;
 }
 
+
 .release_item:hover .release_name {
-  opacity: 1;
+    opacity: 1;
 }
 
 /* .timeline {
