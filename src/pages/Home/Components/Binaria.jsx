@@ -1,8 +1,36 @@
 import style from "./Binaria.module.css";
-import { Box } from "@mui/material";
-import Chart from "../../../assets/BinariaChart2.png";
+import { Box, Tooltip } from "@mui/material";
+import Xai from "../../../assets/objects/Xai.png";
+import PopoverComponent from "../../../components/Popover";
+import { useEffect, useRef, useState } from "react";
+import { startNagaoMovement } from "./animations/nagaoMovements";
 
 const Binaria = () => {
+  const nagaoRef = useRef(null)
+
+  useEffect(() => {
+    startNagaoMovement(nagaoRef.current)
+  }, [])
+
+  const [anchorEl, setAnchorEl] = useState(null)
+  const [selectedId, setSelectedId] = useState(null)
+
+
+  const openDetails = (e) => {
+    console.log("e", e.currentTarget);
+
+    const id = e.currentTarget.getAttribute('id');
+
+    console.log(e.currentTarget)
+    setSelectedId(id);
+    setAnchorEl(e.currentTarget)
+  };
+
+  const handleClosePopover = () => {
+    setAnchorEl(null)
+    setSelectedId(null)
+  }
+
   return (
     <Box className={style.binaria}>
       <Box className={style.screen}>
@@ -39,9 +67,23 @@ const Binaria = () => {
         </Box>
         <Box className={style.Hipparcos}>α=38.0 AS pc (Hipparcos)</Box>
         <Box className={style.orbitalPlane}>orbital plane</Box>
-         <Box className={style.orbitalPlaneJapanese}>軌道面</Box>
+        <Box className={style.orbitalPlaneJapanese}>軌道面</Box>
+
+        <Tooltip title="Xai">
+          <img src={Xai} className={style.NagaoAsteroid} id={"nagao"} onClick={openDetails}
+          
+          ref={nagaoRef}
+          ></img>
+        </Tooltip>
 
         {/* <img src={Chart} className={style.chart} /> */}
+
+      
+        <PopoverComponent
+          id={selectedId}
+          anchorEl={anchorEl}
+          onClose={handleClosePopover}
+          />
       </Box>
     </Box>
   );

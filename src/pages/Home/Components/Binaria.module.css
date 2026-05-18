@@ -278,3 +278,84 @@
   -webkit-mask-image: linear-gradient(to right, transparent 20%, black 70%);
   mask-image: linear-gradient(to right, transparent 5%, black 90%);
 }
+
+.NagaoAsteroid {
+  position: absolute;
+  top: 59%;
+  right: 31.6%;
+  height: 88px;
+  /* animation:
+    nagaoMovimentation 3s linear infinite,
+    nagaoMovimentation2 3s linear infinite; */
+  will-change: transform;
+
+  transition: transform 0.3s ease-out;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.NagaoAsteroid:hover {
+  height: 95px;
+
+  transform: scale(2.7);
+  animation-play-state: paused;
+}
+
+/* @keyframes nagaoMovimentation {
+  0% {
+    opacity: 0;
+
+    transform: translate(-15px, 0px) rotate(0deg);
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 1;
+
+    transform: translate(75px, 119px) rotate(15deg);
+  }
+
+  75% {
+    opacity: 0;
+  }
+
+  85% {
+    opacity: 0;
+  }
+
+  92% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+
+    transform: translate(320px, 210px) rotate(-55deg);
+  }
+}
+
+@keyframes nagaoMovimentation2 {
+  0% {
+    opacity: 1;
+    top: 50%;
+    right: 4.6%;
+    height: 88px;
+    transform: translate(-15px, 0px) rotate(15deg);
+  }
+
+  10% {
+    top: 49%;
+
+  }
+
+  100% {
+        opacity: 1;
+    top: 59%;
+    right: 31.6%;
+    height: 88px;
+    transform: translate(-15px, 0px) rotate(0deg);
+  }
+} */

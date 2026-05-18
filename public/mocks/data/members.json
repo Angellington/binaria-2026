@@ -1,0 +1,56 @@
+[
+  {
+    "id": "yoshisa_nagao",
+    "name": "Yoshisa Nagao",
+    "role": "arrangement",
+    "soundStyle": ["minimal", "abstract", "electronic", "noise"],
+    "favorites": ["レコード", "自転車", "写真", "漫画", "芋焼酎"],
+    "website": {
+      "label": "UNTITLED SAMPLES...web",
+      "url": "http://www001.upp.so-net.ne.jp/untitledsamples/"
+    },
+    "background": ""
+  },
+  {
+    "id": "yanaginagi",
+    "name": "Yanaginagi",
+    "role": ["vocal", "compose"],
+    "influences": ["フランス童謡", "宮沢賢治", "WachiField", "宙ノ吊前"],
+    "soundStyle": [],
+    "favorites": ["雨", "月", "甘いもの", "本の匂い"],
+    "website": {
+      "label": "CorLeonis",
+      "url": "http://corleonis.info"
+    },
+    "background": ""
+  },
+  {
+    "id": "annabel",
+    "name": "Annabel",
+    "role": ["vocal", "lyric"],
+    "birthplace": "Argentina",
+    "influences": [],
+    "soundStyle": [],
+    "favorites": ["恐竜", "虫", "バレエ", "チョコレート", "古本"],
+    "website": {
+      "label": "Annabel official site",
+      "url": "https://annabel.jp"
+    },
+    "background": ""
+  },
+  {
+    "id": "xai",
+    "name": "XAI",
+    "role": ["visual work", "original website"],
+    "materials": ["ペン", "インク", "鉛筆", "一眼レフ", "PC"],
+    "birthplace": "",
+    "influences": [],
+    "soundStyle": [],
+    "favorites": ["映画", "詩", "絵本", "ピアノ", "石"],
+    "website": {
+      "label": "Twitter",
+      "url": "https://twitter.com/xai_c"
+    },
+    "background": ""
+  }
+]
