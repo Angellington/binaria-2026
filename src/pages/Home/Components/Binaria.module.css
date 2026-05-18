@@ -79,14 +79,65 @@
   transform: translateX(-274%);
 }
 
+.absiscissasA1 {
+  position: absolute;
+  top: 88.7%;
+  left: 169px;
+  width: 24.7%;
+  /* opacity: 0.2; */
+  height: 1px;
+  background-color: #8a776e;
+  transform: translateY(-296%);
+}
+
+.absiscissasA2 {
+  position: absolute;
+  top: 88.7%;
+  left: 407px;
+  width: 13.4%;
+  /* opacity: 0.2; */
+  height: 1px;
+  background-color: #8a776e;
+  transform: translateY(-296%);
+}
+
+.absiscissasBottom {
+  position: absolute;
+  top: 92.8%;
+  left: 169px;
+  width: 49.4%;
+  /* opacity: 0.2; */
+  height: 1.25px;
+  background-color: #8a776e;
+  transform: translateY(-296%);
+}
+
 /*Letters */
 .heightGraphicLetter {
   position: absolute;
   font-style: italic;
   font-weight: 500;
   color: #8a776e;
-  left: 9.4%;
-  bottom: 35.5%;
+  left: 13.1%;
+  bottom: 33.1%;
+}
+
+.A1GraphicLetter {
+  font-style: italic;
+  position: absolute;
+  font-weight: 500;
+  color: #8a776e;
+  left: 28.9%;
+  bottom: 12.1%;
+}
+
+.A2GraphicLetter {
+  font-style: italic;
+  position: absolute;
+  font-weight: 500;
+  color: #8a776e;
+  left: 47.9%;
+  bottom: 12.1%;
 }
 
 .inclinationAngleLetter {
@@ -105,6 +156,42 @@
   color: #8a776e;
   top: 19%;
   left: 46%;
+  font-size: 12px;
+}
+
+.binarySeparation {
+  position: absolute;
+  font-weight: 500;
+  color: #8a776e;
+  top: 93.5%;
+  left: 25.3%;
+  font-size: 12px;
+}
+
+.Hipparcos {
+  position: absolute;
+  font-weight: 500;
+  color: #8a776e;
+  top: 95.6%;
+  left: 28.5%;
+  font-size: 12px;
+}
+
+.orbitalPlane {
+  position: absolute;
+  font-weight: 500;
+  color: #8a776e;
+  top: 39%;
+  left: 54.9%;
+  font-size: 12px;
+}
+
+.orbitalPlaneJapanese {
+  position: absolute;
+  font-weight: 500;
+  color: #8a776e;
+  top: 41.5%;
+  left: 57.4%;
   font-size: 12px;
 }
 
