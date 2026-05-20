@@ -1,0 +1,10 @@
+.frame {
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 500px;
+    height: 150px;
+    
+}

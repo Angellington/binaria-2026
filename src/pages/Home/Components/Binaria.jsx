@@ -4,9 +4,12 @@ import Xai from "../../../assets/objects/Xai.png";
 import PopoverComponent from "../../../components/Popover";
 import { useEffect, useRef, useState } from "react";
 import { startNagaoMovement } from "./animations/nagaoMovements";
+import NagaoFrame from "../../../components/Members/NagaoFrame";
+import { useGetApi } from "../../../hooks/useGetApi";
 
 const Binaria = () => {
   const nagaoRef = useRef(null)
+  const { getJsonFile } = useGetApi();
 
   useEffect(() => {
     return startNagaoMovement(nagaoRef.current, style.nagaoOrbital)
@@ -15,14 +18,11 @@ const Binaria = () => {
 
   const [anchorEl, setAnchorEl] = useState(null)
   const [selectedId, setSelectedId] = useState(null)
+  const [mbdata, setMbdata] = useState(null)
 
 
   const openDetails = (e) => {
-    console.log("e", e.currentTarget);
-
     const id = e.currentTarget.getAttribute('id');
-
-    console.log(e.currentTarget)
     setSelectedId(id);
     setAnchorEl(e.currentTarget)
   };
@@ -30,6 +30,28 @@ const Binaria = () => {
   const handleClosePopover = () => {
     setAnchorEl(null)
     setSelectedId(null)
+  }
+
+
+  useEffect(() => {
+    getJsonFile("mocks/data/members.json").then((data) => {
+      setMbdata(data);
+    });
+  }, [])
+
+
+  const renderContent = (id) => {
+
+    console.log("mbdata", mbdata)
+    
+    const member =  mbdata?.find((mb) => mb.id === id)
+
+    switch (id) {
+      case "yoshisa_nagao":
+        return <NagaoFrame data={member}  />
+      default:
+        return <Box></Box>;
+    }
   }
 
   return (
@@ -70,8 +92,8 @@ const Binaria = () => {
         <Box className={style.orbitalPlane}>orbital plane</Box>
         <Box className={style.orbitalPlaneJapanese}>軌道面</Box>
 
-        <Tooltip title="Xai">
-          <img src={Xai} className={style.NagaoAsteroid} id={"nagao"} onClick={openDetails}
+        <Tooltip title="Nagao">
+          <img src={Xai} className={style.NagaoAsteroid} id={"yoshisa_nagao"} onClick={openDetails}
           
           ref={nagaoRef}
           ></img>
@@ -81,10 +103,12 @@ const Binaria = () => {
 
       
         <PopoverComponent
-          id={selectedId}
+          
           anchorEl={anchorEl}
           onClose={handleClosePopover}
-          />
+          >
+            {renderContent(selectedId)}
+          </PopoverComponent>
       </Box>
     </Box>
   );

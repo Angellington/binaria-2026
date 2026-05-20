@@ -35,23 +35,35 @@ const getDepthScale = (localY, radiusY) => {
 };
 
 export const startNagaoMovement = (element, orbitalClassName) => {
-  if (!element || !orbitalClassName) return undefined;
+  if (!element || !orbitalClassName) return undefined
 
   const screen = element.offsetParent;
   const orbit = screen?.querySelector(`.${orbitalClassName}`);
+
 
   if (!screen || !orbit) return undefined;
 
   let frameId;
   let startedAt;
+  let paused = false;
+  let pausedAt = 0;
+  let totalPausedTime = 0;
 
-  element.style.willChange = "transform, opacity";
+  element.style.willChange = "transform, opacity"; // Avisa ao navegador o que vai
   element.style.transformOrigin = "50% 50%";
+
+
 
   const moveNagao = (timestamp) => {
     if (!startedAt) startedAt = timestamp;
 
-    const elapsed = timestamp - startedAt;
+
+    if(paused){
+      frameId = requestAnimationFrame(moveNagao);
+      return;
+    }
+
+    const elapsed = timestamp - startedAt - totalPausedTime;
     const progress = (elapsed % ORBIT_DURATION) / ORBIT_DURATION;
     const angleRad = ((START_ANGLE - progress * 360) * Math.PI) / 180;
     const radiusX = orbit.offsetWidth / 2;
@@ -81,6 +93,19 @@ export const startNagaoMovement = (element, orbitalClassName) => {
 
     frameId = requestAnimationFrame(moveNagao);
   };
+
+  element.addEventListener("mouseenter", () => {
+    paused = true;
+    pausedAt = performance.now();
+  })
+
+  element.addEventListener("mouseleave", () => {
+    if(!paused) return;
+
+    totalPausedTime += performance.now() - pausedAt;
+    paused = false;
+  })
+
 
   const start = () => {
     frameId = requestAnimationFrame(moveNagao);
