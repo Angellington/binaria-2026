@@ -288,6 +288,7 @@
     nagaoMovimentation 3s linear infinite,
     nagaoMovimentation2 3s linear infinite; */
   will-change: transform;
+  mix-blend-mode: multiply;
 
   transition: transform 0.3s ease-out;
   cursor: pointer;
