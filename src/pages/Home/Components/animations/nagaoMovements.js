@@ -1,134 +1,99 @@
 // nagaoMovements.js
 
-export const startNagaoMovement = (element) => {
-  if (!element) return;
+const ORBIT_DURATION = 29000;
+const START_ANGLE = 180;
+const ASTEROID_ROTATION_DURATION = 52000;
+const ASTEROID_WOBBLE_DEGREES = 5;
+const MIN_DEPTH_SCALE = 0.88;
+const MAX_DEPTH_SCALE = 1.08;
+const MASK_VISIBLE_UNTIL = 0.3;
+const MASK_FADE_END = 0.4;
 
-  const playAnimation1 = () => {
-    element
-      .animate(
-        [
-          {
-            opacity: 1,
-            transform: "translate(-15px, 0px) rotate(10deg) scale(1)",
-            offset: 0,
-          },
+const getOrbitTransform = (orbit) => {
+  const transform = window.getComputedStyle(orbit).transform;
 
-          {
-            opacity: 1,
-            transform: "translate(15px, 40px) rotate(14deg) scale(1)",
-            offset: 0.15,
-          },
+  if (transform === "none") {
+    return new DOMMatrixReadOnly();
+  }
 
-          {
-            opacity: 1,
-            transform: "translate(45px, 80px) rotate(18deg) scale(1)",
-            offset: 0.3,
-          },
+  return new DOMMatrixReadOnly(transform);
+};
 
-          {
-            opacity: 1,
-            transform: "translate(75px, 119px) rotate(22deg) scale(1.075)",
-            offset: 0.45,
-          },
+const getMaskOpacity = (localX, radiusX) => {
+  const xPercent = (localX + radiusX) / (radiusX * 2);
 
-          {
-            opacity: 1,
-            transform: "translate(105px, 140px) rotate(26deg) scale(1.110)",
-            offset: 0.6,
-          },
+  if (xPercent <= MASK_VISIBLE_UNTIL) return 1;
+  if (xPercent >= MASK_FADE_END) return 0;
 
-          {
-            opacity: 1,
-            transform: "translate(145px, 165px) rotate(30deg) scale(1.155)",
-            offset: 0.75,
-          },
+  return 1 - (xPercent - MASK_VISIBLE_UNTIL) / (MASK_FADE_END - MASK_VISIBLE_UNTIL);
+};
 
-          {
-            opacity: 0.8,
-            transform: "translate(185px, 175px) rotate(34deg)",
-            offset: 0.9,
-          },
-          {
-            opacity: 0.5,
-            offset: 0.95,
-          },
+const getDepthScale = (localY, radiusY) => {
+  const depthProgress = (localY + radiusY) / (radiusY * 2);
 
-          {
-            opacity: 0,
-            transform: "translate(200px, 175px) rotate(38deg) scale(1.170)",
-            offset: 1,
-          },
-        ],
-        {
-          duration: 2000,
-          easing: "linear",
-          fill: "forwards",
-          // iterations: Infinity,
-        },
-      )
-      .finished.then(() => playAnimation2());
+  return MIN_DEPTH_SCALE + depthProgress * (MAX_DEPTH_SCALE - MIN_DEPTH_SCALE);
+};
+
+export const startNagaoMovement = (element, orbitalClassName) => {
+  if (!element || !orbitalClassName) return undefined;
+
+  const screen = element.offsetParent;
+  const orbit = screen?.querySelector(`.${orbitalClassName}`);
+
+  if (!screen || !orbit) return undefined;
+
+  let frameId;
+  let startedAt;
+
+  element.style.willChange = "transform, opacity";
+  element.style.transformOrigin = "50% 50%";
+
+  const moveNagao = (timestamp) => {
+    if (!startedAt) startedAt = timestamp;
+
+    const elapsed = timestamp - startedAt;
+    const progress = (elapsed % ORBIT_DURATION) / ORBIT_DURATION;
+    const angleRad = ((START_ANGLE - progress * 360) * Math.PI) / 180;
+    const radiusX = orbit.offsetWidth / 2;
+    const radiusY = orbit.offsetHeight / 2;
+    const matrix = getOrbitTransform(orbit);
+
+    const localX = Math.cos(angleRad) * radiusX;
+    const localY = Math.sin(angleRad) * radiusY;
+    const orbitCenterX = orbit.offsetLeft + radiusX;
+    const orbitCenterY = orbit.offsetTop + radiusY;
+
+    const orbitX = orbitCenterX + matrix.a * localX + matrix.c * localY + matrix.e;
+    const orbitY = orbitCenterY + matrix.b * localX + matrix.d * localY + matrix.f;
+
+    const nagaoCenterX = element.offsetLeft + element.offsetWidth / 2;
+    const nagaoCenterY = element.offsetTop + element.offsetHeight / 2;
+    const translateX = orbitX - nagaoCenterX;
+    const translateY = orbitY - nagaoCenterY;
+    const rotationProgress = elapsed / ASTEROID_ROTATION_DURATION;
+    const asteroidRotation =
+      rotationProgress * 360 +
+      Math.sin(rotationProgress * Math.PI * 4) * ASTEROID_WOBBLE_DEGREES;
+    const depthScale = getDepthScale(localY, radiusY);
+
+    element.style.opacity = getMaskOpacity(localX, radiusX);
+    element.style.transform = `translate3d(${translateX}px, ${translateY}px, 0) rotate(${asteroidRotation}deg) scale(${depthScale})`;
+
+    frameId = requestAnimationFrame(moveNagao);
   };
 
-  const playAnimation2 = () => {
-    element
-      .animate(
-        [
-          {
-            opacity: 0,
-            transform: "translate(225px, -20px) rotate(-45deg) scale(0.85)",
-            offset: 0,
-          },
-
-          {
-            opacity: 0.4,
-            transform: "translate(190px, -18px) rotate(-35deg) scale(0.88)",
-            offset: 0.15,
-          },
-
-          {
-            opacity: 1,
-            transform: "translate(155px, -16px) rotate(-25deg) scale(0.91)",
-            offset: 0.3,
-          },
-
-          {
-            opacity: 1,
-            transform: "translate(120px, -14px) rotate(-15deg) scale(0.94)",
-            offset: 0.45,
-          },
-
-          {
-            opacity: 1,
-            transform: "translate(85px, -12px) rotate(-5deg) scale(0.97)",
-            offset: 0.6,
-          },
-
-          {
-            opacity: 1,
-            transform: "translate(50px, -8px) rotate(0deg) scale(0.99)",
-            offset: 0.75,
-          },
-
-          {
-            opacity: 1,
-            transform: "translate(15px, -4px) rotate(5deg) scale(1)",
-            offset: 0.9,
-          },
-
-          {
-            opacity: 1,
-            transform: "translate(-15px, 0px) rotate(10deg) scale(1)",
-            offset: 1,
-          },
-        ],
-        {
-          duration: 2000,
-          // easing: "ease-out",
-          fill: "forwards",
-        },
-      )
-      .finished.then(playAnimation1);
+  const start = () => {
+    frameId = requestAnimationFrame(moveNagao);
   };
 
-  playAnimation1();
+  if (element.complete) {
+    start();
+  } else {
+    element.addEventListener("load", start, { once: true });
+  }
+
+  return () => {
+    cancelAnimationFrame(frameId);
+    element.removeEventListener("load", start);
+  };
 };

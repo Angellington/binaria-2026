@@ -9,8 +9,9 @@ const Binaria = () => {
   const nagaoRef = useRef(null)
 
   useEffect(() => {
-    startNagaoMovement(nagaoRef.current)
-  }, [])
+    return startNagaoMovement(nagaoRef.current, style.nagaoOrbital)
+  }, [style.nagaoOrbital])
+
 
   const [anchorEl, setAnchorEl] = useState(null)
   const [selectedId, setSelectedId] = useState(null)
