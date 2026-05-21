@@ -8,7 +8,14 @@ const PopoverComponent = ({ anchorEl, onClose, children }) => {
       open={open}
       anchorEl={anchorEl}
       onClose={onClose}
-      transitionDuration={{ exit: 3000 }}
+      transitionDuration={{ enter: 180, exit: 180 }}
+      sx={{ pointerEvents: "none" }}
+      slotProps={{
+        paper: {
+          onMouseLeave: onClose,
+          sx: { pointerEvents: "auto" },
+        },
+      }}
       anchorOrigin={{
         vertical: "center",
         horizontal: "center",
@@ -18,7 +25,7 @@ const PopoverComponent = ({ anchorEl, onClose, children }) => {
         horizontal: "center",
       }}
     >
-      <Box onMouseLeave={onClose}>{children}</Box>
+      <Box>{children}</Box>
     </Popover>
   );
 };

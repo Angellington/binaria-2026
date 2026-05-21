@@ -353,6 +353,29 @@
   animation-play-state: paused;
 }
 
+
+.xaiPlanet {
+  position: absolute;
+  top: 24.4%;
+  right: 62.6%;
+  height: 49px;
+
+  will-change: transform;
+  mix-blend-mode: multiply;
+
+  transition: transform 0.3s ease-out;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.xaiPlanet:hover {
+  height: 49px;
+
+  transform: scale(1.6);
+  animation-play-state: paused;
+}
+
+
 /* @keyframes nagaoMovimentation {
   0% {
     opacity: 0;

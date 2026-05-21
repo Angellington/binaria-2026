@@ -3,32 +3,95 @@ import { Box, Tooltip } from "@mui/material";
 import Xai from "../../../assets/objects/Xai.png";
 import Yanagi from "../../../assets/objects/Yanagi.png";
 import Annabel from "../../../assets/objects/Annabel.png";
+import Nagao from "../../../assets/objects/Nagao.png";
 import PopoverComponent from "../../../components/Popover";
 import { useEffect, useRef, useState } from "react";
-import { startNagaoMovement } from "./animations/nagaoMovements";
 import { useGetApi } from "../../../hooks/useGetApi";
 import Frame from "../../../components/Members/Frame";
-import Chart from "./../../../assets/BinariaChart2.png"
-import { startYanagiMovement } from "./animations/yanagiMovement";
-import { startAnnabelMovement } from "./animations/annabelMovement";
+import { startMemberMovement } from "./animations/memberMovement";
+import Chart from "../../../assets/BinariaChart2.png";
+
+const MOVEMENT_CONFIG = {
+  nagao: {
+    orbitDuration: 29000,
+    startAngle: 180,
+    orbitDirection: -1,
+    asteroidRotationDuration: 52000,
+    asteroidWobbleDegrees: 5,
+    minDepthScale: 0.88,
+    maxDepthScale: 1.08,
+    maskVisibleUntil: 0.3,
+    maskFadeEnd: 0.4,
+  },
+  yanagi: {
+    orbitDuration: 14000,
+    startAngle: 180,
+    orbitDirection: -1,
+    asteroidRotationDuration: 52000,
+    asteroidWobbleDegrees: 5,
+    minDepthScale: 0.88,
+    maxDepthScale: 1.18,
+    maskVisibleUntil: 1,
+    maskFadeEnd: 1,
+  },
+  annabel: {
+    orbitDuration: 7000,
+    startAngle: 180,
+    orbitDirection: 1,
+    asteroidRotationDuration: 52000,
+    asteroidWobbleDegrees: 5,
+    minDepthScale: 0.88,
+    maxDepthScale: 1.18,
+    maskVisibleUntil: 1,
+    maskFadeEnd: 1,
+  },
+  xai: {
+    orbitDuration: 20000,
+    startAngle: 180,
+    orbitDirection: -1,
+    selfRotationEnabled: false,
+    asteroidWobbleDegrees: 2,
+    minDepthScale: 0.88,
+    maxDepthScale: 1.18,
+    maskVisibleUntil: 1,
+    maskFadeEnd: 1,
+  },
+};
 
 const Binaria = () => {
   const nagaoRef = useRef(null);
   const annabelRef = useRef(null);
   const yanagiRef = useRef(null);
+  const xaiRef = useRef(null);
   const { getJsonFile } = useGetApi();
 
   useEffect(() => {
-    return startNagaoMovement(nagaoRef.current, style.nagaoOrbital);
+    return startMemberMovement(
+      nagaoRef.current,
+      style.nagaoOrbital,
+      MOVEMENT_CONFIG.nagao
+    );
   }, [style.nagaoOrbital]);
 
   useEffect(() => {
-    return startYanagiMovement(yanagiRef.current, style.orbital);
+    return startMemberMovement(
+      yanagiRef.current,
+      style.orbital,
+      MOVEMENT_CONFIG.yanagi
+    );
   }, [style.orbital]);
 
   useEffect(() => {
-    return startAnnabelMovement(annabelRef.current, style.internalOrbital)
-  }, [style.internalOrbital])
+    return startMemberMovement(
+      annabelRef.current,
+      style.internalOrbital,
+      MOVEMENT_CONFIG.annabel
+    );
+  }, [style.internalOrbital]);
+
+  useEffect(() => {
+    return startMemberMovement(xaiRef.current, style.xaiOrbital, MOVEMENT_CONFIG.xai);
+  }, [style.xaiOrbital]);
 
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedId, setSelectedId] = useState(null);
@@ -56,15 +119,12 @@ const Binaria = () => {
 
     switch (id) {
       case "yoshisa_nagao":
-        return <Frame data={member} />;
       case "yanaginagi":
-        return <Frame data={member} />;
       case "annabel":
-        return <Frame data={member} />;
       case "xai":
         return <Frame data={member} />;
       default:
-        return <Box></Box>;
+        return '';
     }
   };
 
@@ -81,19 +141,14 @@ const Binaria = () => {
         <Box className={style.absiscissasA2} />
         <Box className={style.absiscissasBottom} />
 
-        {/* DOTLINES  */}
         <Box className={style.dashed45} />
-
-        {/* Angles */}
         <Box className={style.inclinationAngle}></Box>
 
-        {/* ORBITAL */}
         <Box className={style.orbital}></Box>
         <Box className={style.internalOrbital}></Box>
         <Box className={style.nagaoOrbital}></Box>
         <Box className={style.xaiOrbital}></Box>
 
-        {/* Texts  */}
         <Box className={style.heightGraphicLetter}>h</Box>
         <Box className={style.A1GraphicLetter}>a1</Box>
         <Box className={style.A2GraphicLetter}>a2</Box>
@@ -108,7 +163,7 @@ const Binaria = () => {
 
         <Tooltip title="Nagao">
           <img
-            src={Xai}
+            src={Nagao}
             className={style.NagaoAsteroid}
             id={"yoshisa_nagao"}
             onClick={openDetails}
@@ -136,7 +191,17 @@ const Binaria = () => {
           ></img>
         </Tooltip>
 
-        {/* <img src={Chart} className={style.chart} /> */}
+        <Tooltip title="Xai">
+          <img
+            src={Xai}
+            className={style.xaiPlanet}
+            id={"xai"}
+            onClick={openDetails}
+            ref={xaiRef}
+          ></img>
+        </Tooltip>
+
+        {/* <img src={Chart} className={style.chart} ></img> */}
 
         <PopoverComponent anchorEl={anchorEl} onClose={handleClosePopover}>
           {renderContent(selectedId)}

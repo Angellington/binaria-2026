@@ -42,7 +42,11 @@ const Frame = (data) => {
                 </Typography>
               )}
 
-              {key === "soundStyle" && (
+                {key === "influences" && data.data[key].lenght > 0 && (
+                <Typography>favorites: {data.data[key].join("/")}</Typography>
+              )}
+
+              {key === "soundStyle" && data.data[key].lenght > 0 && (
                 <Typography>
                   sound style: {data.data[key].join("/")}
                 </Typography>
