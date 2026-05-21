@@ -1,10 +1,20 @@
 .frame {
-    padding: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    width: 500px;
-    height: 150px;
-    
+  width: 500px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+}
+
+.frame > .nameTitle {
+    font-family: "ControlwellScript";
+    font-size: 1.8rem;
+}
+
+.text {
+    font-size: 2rem;
 }

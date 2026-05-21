@@ -1,7 +1,7 @@
 [
   {
     "id": "yoshisa_nagao",
-    "name": "Yoshisa Nagao",
+    "name": "yoshisa nagao",
     "role": "arrangement",
     "soundStyle": ["minimal", "abstract", "electronic", "noise"],
     "favorites": ["レコード", "自転車", "写真", "漫画", "芋焼酎"],
@@ -13,7 +13,7 @@
   },
   {
     "id": "yanaginagi",
-    "name": "Yanaginagi",
+    "name": "yanaginagi",
     "role": ["vocal", "compose"],
     "influences": ["フランス童謡", "宮沢賢治", "WachiField", "宙ノ吊前"],
     "soundStyle": [],
@@ -40,7 +40,7 @@
   },
   {
     "id": "xai",
-    "name": "XAI",
+    "name": "xai",
     "role": ["visual work", "original website"],
     "materials": ["ペン", "インク", "鉛筆", "一眼レフ", "PC"],
     "birthplace": "",

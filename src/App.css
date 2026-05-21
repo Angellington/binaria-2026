@@ -3,3 +3,8 @@ body {
     padding: 0;
     box-sizing: border-box;
 }
+
+@font-face {
+    font-family: 'ControlwellScript';
+    src: url('fonts/ControwellScript-Regular.ttf');
+}

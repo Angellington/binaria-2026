@@ -2,21 +2,33 @@ import style from "./Binaria.module.css";
 import { Box, Tooltip } from "@mui/material";
 import Xai from "../../../assets/objects/Xai.png";
 import Yanagi from "../../../assets/objects/Yanagi.png";
+import Annabel from "../../../assets/objects/Annabel.png";
 import PopoverComponent from "../../../components/Popover";
 import { useEffect, useRef, useState } from "react";
 import { startNagaoMovement } from "./animations/nagaoMovements";
-import NagaoFrame from "../../../components/Members/NagaoFrame";
 import { useGetApi } from "../../../hooks/useGetApi";
-
+import Frame from "../../../components/Members/Frame";
+import Chart from "./../../../assets/BinariaChart2.png"
+import { startYanagiMovement } from "./animations/yanagiMovement";
+import { startAnnabelMovement } from "./animations/annabelMovement";
 
 const Binaria = () => {
   const nagaoRef = useRef(null);
+  const annabelRef = useRef(null);
   const yanagiRef = useRef(null);
   const { getJsonFile } = useGetApi();
 
   useEffect(() => {
     return startNagaoMovement(nagaoRef.current, style.nagaoOrbital);
   }, [style.nagaoOrbital]);
+
+  useEffect(() => {
+    return startYanagiMovement(yanagiRef.current, style.orbital);
+  }, [style.orbital]);
+
+  useEffect(() => {
+    return startAnnabelMovement(annabelRef.current, style.internalOrbital)
+  }, [style.internalOrbital])
 
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedId, setSelectedId] = useState(null);
@@ -40,13 +52,17 @@ const Binaria = () => {
   }, []);
 
   const renderContent = (id) => {
-    console.log("mbdata", mbdata);
-
     const member = mbdata?.find((mb) => mb.id === id);
 
     switch (id) {
       case "yoshisa_nagao":
-        return <NagaoFrame data={member} />;
+        return <Frame data={member} />;
+      case "yanaginagi":
+        return <Frame data={member} />;
+      case "annabel":
+        return <Frame data={member} />;
+      case "xai":
+        return <Frame data={member} />;
       default:
         return <Box></Box>;
     }
@@ -110,7 +126,17 @@ const Binaria = () => {
           ></img>
         </Tooltip>
 
-        <img src={"assets/chart.png"} className={style.chart} />
+        <Tooltip title="Annabel">
+          <img
+            src={Annabel}
+            className={style.AnnabelStar}
+            id={"annabel"}
+            onClick={openDetails}
+            ref={annabelRef}
+          ></img>
+        </Tooltip>
+
+        {/* <img src={Chart} className={style.chart} /> */}
 
         <PopoverComponent anchorEl={anchorEl} onClose={handleClosePopover}>
           {renderContent(selectedId)}
