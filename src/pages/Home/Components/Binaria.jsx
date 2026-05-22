@@ -13,7 +13,7 @@ import Chart from "../../../assets/BinariaChart2.png";
 
 const MOVEMENT_CONFIG = {
   nagao: {
-    orbitDuration: 29000,
+    orbitDuration: 43890,
     startAngle: 180,
     orbitDirection: -1,
     asteroidRotationDuration: 52000,
@@ -24,7 +24,7 @@ const MOVEMENT_CONFIG = {
     maskFadeEnd: 0.4,
   },
   yanagi: {
-    orbitDuration: 14000,
+    orbitDuration: 14140,
     startAngle: 180,
     orbitDirection: -1,
     asteroidRotationDuration: 52000,
@@ -46,7 +46,7 @@ const MOVEMENT_CONFIG = {
     maskFadeEnd: 1,
   },
   xai: {
-    orbitDuration: 20000,
+    orbitDuration: 22820,
     startAngle: 180,
     orbitDirection: -1,
     selfRotationEnabled: false,

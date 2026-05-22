@@ -7,13 +7,9 @@ const Frame = (data) => {
     ? `url('${data.data.background}')`
     : "url('/assets/binariapattern.png')";
 
-  console.log("data", data);
-
   Object.keys(data.data || {}).forEach((key) => {
     console.log(`${key}: ${data.data[key]}`);
   });
-
-  console.log("data", data);
 
   return (
     <Box
@@ -29,36 +25,48 @@ const Frame = (data) => {
 
       <Box>
         {Object.keys(data.data || {}).map((key) => {
-          console.log("data", key);
-
           return (
             <Fragment key={key}>
               {key === "role" && (
                 <Typography>
-                  main part:{" "}
+                  main part :{" "}
                   {Array.isArray(data.data[key])
                     ? data.data[key].join("/")
                     : data.data[key]}
                 </Typography>
               )}
 
-                {key === "influences" && data.data[key].lenght > 0 && (
-                <Typography>favorites: {data.data[key].join("/")}</Typography>
+              {key === "materials" && (
+                <Typography>
+                  materials :{" "}
+                  {Array.isArray(data.data[key])
+                    ? data.data[key].join("/")
+                    : data.data[key]}
+                </Typography>
               )}
 
-              {key === "soundStyle" && data.data[key].lenght > 0 && (
+              {key === "birthplace" && data.data[key] && (
+                <Typography>birth place : {data.data[key]}</Typography>
+              )}
+
+              {key === "influences" && data.data[key].length > 0 && (
+                <Typography>affected : {data.data[key].join("/")}</Typography>
+              )}
+
+              {key === "soundStyle" && data.data[key].length > 0 && (
                 <Typography>
-                  sound style: {data.data[key].join("/")}
+                  {console.log("INDO INDO INDO", data.data[key])}
+                  sound style : {data.data[key].join("/")}
                 </Typography>
               )}
 
               {key === "favorites" && (
-                <Typography>favorites: {data.data[key].join("/")}</Typography>
+                <Typography>favorites : {data.data[key].join("/")}</Typography>
               )}
 
               {key === "website" && (
                 <Typography>
-                  website:{" "}
+                  website :{" "}
                   <a
                     href={data.data[key].url}
                     target="_blank"

@@ -19,10 +19,10 @@
     "soundStyle": [],
     "favorites": ["雨", "月", "甘いもの", "本の匂い"],
     "website": {
-      "label": "CorLeonis",
-      "url": "http://corleonis.info"
+      "label": "yanaginagi",
+      "url": "https://yanaginagi.net"
     },
-    "background": ""
+    "background": "assets/yanagi.png"
   },
   {
     "id": "annabel",
@@ -51,6 +51,6 @@
       "label": "Twitter",
       "url": "https://twitter.com/xai_c"
     },
-    "background": ""
+    "background": "assets/xai.png"
   }
 ]
